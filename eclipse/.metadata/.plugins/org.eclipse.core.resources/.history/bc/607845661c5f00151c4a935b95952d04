@@ -1,0 +1,13 @@
+package com.sythiex.vanilla_supplements.items;
+
+import net.minecraft.item.Item;
+
+public class ItemWand extends Item
+{
+	public ItemWand()
+	{
+		
+	}
+	
+	
+}

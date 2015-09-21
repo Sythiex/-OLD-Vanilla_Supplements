@@ -1,0 +1,28 @@
+package com.sythiex.vanilla_supplements;
+
+import java.util.Random;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.util.IIcon;
+
+public class BlockBerryBush extends BlockBushVS
+{
+	public BlockBerryBush()
+	{
+		setBlockName("blockBerryBush");
+		setBlockTextureName(VanillaSupplements.MODID + ":berryBush_stage_0");
+	}
+	
+	@Override
+	public void registerBlockIcons(IIconRegister iconRegister)
+	{
+		iIcon = new IIcon[maxGrowthStage + 1];
+		iIcon[0] = iconRegister.registerIcon(VanillaSupplements.MODID + ":cotton_stage_0");
+		iIcon[1] = iconRegister.registerIcon(VanillaSupplements.MODID + ":cotton_stage_0");
+		iIcon[2] = iconRegister.registerIcon(VanillaSupplements.MODID + ":cotton_stage_0");
+		iIcon[3] = iconRegister.registerIcon(VanillaSupplements.MODID + ":cotton_stage_0");
+		iIcon[4] = iconRegister.registerIcon(VanillaSupplements.MODID + ":cotton_stage_0");
+		iIcon[5] = iconRegister.registerIcon(VanillaSupplements.MODID + ":cotton_stage_1");
+	}
+}

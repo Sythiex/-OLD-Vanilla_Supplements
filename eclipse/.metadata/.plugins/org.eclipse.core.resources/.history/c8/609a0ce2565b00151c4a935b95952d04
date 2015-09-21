@@ -1,0 +1,11 @@
+package com.sythiex.vanilla_supplements;
+
+import net.minecraft.item.Item;
+
+public class ItemVS extends Item
+{
+	public ItemVS()
+	{
+		
+	}
+}

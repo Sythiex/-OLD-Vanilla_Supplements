@@ -1,0 +1,85 @@
+package com.sythiex.vanilla_supplements;
+
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.common.IWorldGenerator;
+
+public class WorldGenVS implements IWorldGenerator
+{
+	@Override
+	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
+		genBushes(rand, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+	}
+	
+	/**
+	 * Generates bushes
+	 * @param rand
+	 * @param chunkX
+	 * @param chunkZ
+	 * @param world
+	 * @param chunkGenerator
+	 * @param chunkProvider
+	 */
+	private void genBushes(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
+		//System.out.println(" ");
+		int x = chunkX * 16 + rand.nextInt(16);
+		int z = chunkZ * 16 + rand.nextInt(16);
+		int y = getTopSolidBlock(world, x, z);
+		//System.out.println(world.getBlock(x, y, z));
+		
+		if(world.getBlock(x, y, z) == Blocks.grass || world.getBlock(x, y, z) == Blocks.dirt)
+		{
+			++y;
+			
+			if(isBlockReplacable(world, x, y, z))
+			{
+				System.out.println(world.getBlock(x, y, z));
+				world.setBlock(x, y, z, Blocks.brick_block, BlockBushVS.maxGrowthStage, 2);
+			}
+			
+			/*
+			for(int i = -1; i <= 1; i++)
+			{
+				for(int k = -1; k <= 1; k++)
+				{
+					for(int j = 0; j <= 1; j++)
+					{
+						if(isBlockReplacable(world, x + i, y + j, z + k))
+						{
+							world.setBlock(x + i, y + j, z + k, Blocks.brick_block, BlockBushVS.maxGrowthStage, 2);
+						}
+					}
+				}
+			}
+			*/
+		}
+	}
+	
+	private int getTopSolidBlock(World world, int x, int z)
+	{
+		int y = 256;
+		
+		while(!world.getBlock(x, y, z).getMaterial().blocksMovement() || (world.getBlock(x, y, z).getMaterial() == Material.leaves) || world.getBlock(x, y, z).isFoliage(world, x, y, z))
+		{
+			--y;
+		}
+		return y;
+	}
+	
+	private boolean isBlockReplacable(World world, int x, int y, int z)
+	{
+		if(!world.getBlock(x, y, z).getMaterial().blocksMovement() || (world.getBlock(x, y, z).getMaterial() == Material.leaves) || world.getBlock(x, y, z).isFoliage(world, x, y, z) || !world.getBlock(x, y, z).getMaterial().isLiquid())
+		{
+			return true;
+		}
+		return false;
+	}
+}

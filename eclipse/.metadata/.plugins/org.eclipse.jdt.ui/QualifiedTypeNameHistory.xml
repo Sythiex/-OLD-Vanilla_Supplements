@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemSeeds"/>
+<fullyQualifiedTypeName name="net.minecraft.client.renderer.texture.IIconRegister"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.relauncher.SideOnly"/>
+<fullyQualifiedTypeName name="net.minecraft.util.IIcon"/>
+<fullyQualifiedTypeName name="net.minecraft.util.MathHelper"/>
+<fullyQualifiedTypeName name="net.minecraftforge.oredict.OreDictionary"/>
+<fullyQualifiedTypeName name="net.minecraftforge.oredict.ShapedOreRecipe"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.relauncher.Side"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="net.minecraftforge.common.MinecraftForge"/>
+<fullyQualifiedTypeName name="net.minecraft.block.IGrowable"/>
+<fullyQualifiedTypeName name="net.minecraft.block.BlockBush"/>
+<fullyQualifiedTypeName name="net.minecraft.client.renderer.RenderBlocks"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemFood"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.IWorldGenerator"/>
+<fullyQualifiedTypeName name="net.minecraftforge.common.util.ForgeDirection"/>
+<fullyQualifiedTypeName name="net.minecraft.block.Block"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
+<fullyQualifiedTypeName name="net.minecraft.block.material.Material"/>
+<fullyQualifiedTypeName name="net.minecraft.server.MinecraftServer"/>
+<fullyQualifiedTypeName name="net.minecraft.util.IChatComponent"/>
+<fullyQualifiedTypeName name="net.minecraft.util.ChatComponentText"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemDye"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Items"/>
+<fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.VanillaSupplements"/>
+<fullyQualifiedTypeName name="net.minecraft.item.Item"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.items.ItemWand"/>
+<fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.registry.GameRegistry"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.item.EntityItem"/>
+</qualifiedTypeNameHistroy>
