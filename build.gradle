@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.2.0-1.7.10"
+version = "0.2.1-1.7.10"
 group= "com.sythiex.vanilla_supplements" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "vanilla_supplements"
 

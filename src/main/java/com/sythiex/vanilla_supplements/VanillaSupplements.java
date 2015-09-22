@@ -12,6 +12,9 @@ import com.sythiex.vanilla_supplements.items.ItemFoodVS;
 import com.sythiex.vanilla_supplements.items.ItemSeedsVS;
 import com.sythiex.vanilla_supplements.items.ItemVS;
 import com.sythiex.vanilla_supplements.items.ItemWand;
+import com.sythiex.vanilla_supplements.network.CommonProxyVS;
+import com.sythiex.vanilla_supplements.network.MessageHandlerVS;
+import com.sythiex.vanilla_supplements.network.MessageVS;
 import com.sythiex.vanilla_supplements.world.WorldGenVS;
 
 import net.minecraft.block.Block;
@@ -27,18 +30,29 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = VanillaSupplements.MODID, version = VanillaSupplements.VERSION)
+
 public class VanillaSupplements
 {
+	@SidedProxy(clientSide="com.sythiex.vanilla_supplements.network.ClientProxyVS", serverSide="com.sythiex.vanilla_supplements.network.ServerProxyVS")
+	public static CommonProxyVS proxy;
+	
     public static final String MODID = "vanilla_supplements";
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.2.1";
+    
+    public static SimpleNetworkWrapper network;
     
     //config variables
     public static boolean addEmeraldTools;
@@ -83,6 +97,9 @@ public class VanillaSupplements
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel("MyChannel");
+        network.registerMessage(MessageHandlerVS.class, MessageVS.class, 0, Side.SERVER);
+    	
     	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
     	config.load();
     	
@@ -102,12 +119,15 @@ public class VanillaSupplements
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+    	proxy.init(event);
     	registerBlocks();
     	registerItems();
     	registerOreDictionary();
     	registerRecipies();
     	
     	GameRegistry.registerWorldGenerator(worldGen, 1000);
+    	
+    	FMLCommonHandler.instance().bus().register(new EventHandlerVS());
     	
     	if(addCotton)
     		MinecraftForge.addGrassSeed(new ItemStack(seedCotton), 7);
