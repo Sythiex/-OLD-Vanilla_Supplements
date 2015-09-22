@@ -1,0 +1,19 @@
+package com.sythiex.vanilla_supplements.client;
+
+import org.lwjgl.input.Keyboard;
+
+import com.sythiex.vanilla_supplements.VSCommonProxy;
+
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraft.client.settings.KeyBinding;
+
+public class VSClientProxy extends VSCommonProxy
+{
+	@EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+		KeyBinding wandMode = new KeyBinding("key.wand_mode.desc", Keyboard.KEY_F, "key.vanilla_supplements.category");
+		ClientRegistry.registerKeyBinding(wandMode);
+    }
+}

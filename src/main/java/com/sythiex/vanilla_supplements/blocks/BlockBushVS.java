@@ -112,10 +112,8 @@ public class BlockBushVS extends BlockBush implements IGrowable
 		return iIcon[growthStage];
 	}
 	
-	/*
+	/**
 	 * is bonemeal allowed?
-	 * (non-Javadoc)
-	 * @see net.minecraft.block.IGrowable#func_149851_a(net.minecraft.world.World, int, int, int, boolean)
 	 */
 	@Override
 	public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
@@ -123,10 +121,8 @@ public class BlockBushVS extends BlockBush implements IGrowable
 		return false;
 	}
 
-	/*
+	/**
 	 * are conditions for bonemeal growth tick acceptable?
-	 * (non-Javadoc)
-	 * @see net.minecraft.block.IGrowable#func_149852_a(net.minecraft.world.World, java.util.Random, int, int, int)
 	 */
 	@Override
 	public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_)
@@ -134,10 +130,8 @@ public class BlockBushVS extends BlockBush implements IGrowable
 		return false;
 	}
 
-	/*
+	/**
 	 * processes growth-tick
-	 * (non-Javadoc)
-	 * @see net.minecraft.block.IGrowable#func_149853_b(net.minecraft.world.World, java.util.Random, int, int, int)
 	 */
 	@Override
 	public void func_149853_b(World world, Random rand, int x, int y, int z){}
