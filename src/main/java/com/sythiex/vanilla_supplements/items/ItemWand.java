@@ -49,6 +49,14 @@ public class ItemWand extends Item
 		if (itemStack.stackTagCompound != null)
 		{
 			list.add("Mode: " + getMode(itemStack.stackTagCompound.getInteger("mode")));
+			if(itemStack.stackTagCompound.getBoolean("firstBlockSet"))
+			{
+				int x = itemStack.stackTagCompound.getInteger("x");
+				int y = itemStack.stackTagCompound.getInteger("y");
+				int z = itemStack.stackTagCompound.getInteger("z");
+				list.add("First block at " + x + ", " + y + ", " + z);
+				list.add("Block selected is " + player.getEntityWorld().getBlock(x, y, z).getLocalizedName());
+			}
 		}
 	}
 	
@@ -64,7 +72,7 @@ public class ItemWand extends Item
         }
 		else
 		{
-			if(itemStack.stackTagCompound.getBoolean("firstBlockSet"))
+			if(itemStack.stackTagCompound.getBoolean("firstBlockSet") && itemStack.stackTagCompound.getInteger("world") == player.dimension)
 			{
 				int x1 = itemStack.stackTagCompound.getInteger("x");
 				int y1 = itemStack.stackTagCompound.getInteger("y");
@@ -76,28 +84,29 @@ public class ItemWand extends Item
 				itemStack.stackTagCompound.setInteger("x", x);
 				itemStack.stackTagCompound.setInteger("y", y);
 				itemStack.stackTagCompound.setInteger("z", z);
+				itemStack.stackTagCompound.setInteger("world", player.dimension);
 				itemStack.stackTagCompound.setBoolean("firstBlockSet", true);
+				player.addChatMessage(new ChatComponentText("Block selection saved"));
 			}
 			return true;
 		}
     }
 	
-	/*
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
 		if(!world.isRemote && player.isSneaking())
 		{
-			int mode = itemStack.stackTagCompound.getInteger("mode");
-			++mode;
-			if(mode > numberOfModes)
-				mode = 1;
-			itemStack.stackTagCompound.setInteger("mode", mode);
-			player.addChatMessage(new ChatComponentText("Mode: " + getMode(mode)));
+			if(itemStack.stackTagCompound.getBoolean("firstBlockSet"))
+			{
+				itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+				player.addChatMessage(new ChatComponentText("Block selection cleared"));
+			}
+			else
+				player.addChatMessage(new ChatComponentText("No block selection to clear"));
 		}
         return itemStack;
     }
-    */
 	
 	/**
 	 * gets the shape the wand will create
@@ -135,39 +144,209 @@ public class ItemWand extends Item
 		int mode = itemStack.stackTagCompound.getInteger("mode");
 		switch(mode)
 		{
-		//rect prism
 		case 1:	
-			Block block = world.getBlock(x1, y1, z1);
-			int metadata = world.getBlockMetadata(x1, y1, z1);
-			int minX = (x1 <= x2) ? x1 : x2;
-			int minY = (y1 <= y2) ? y1 : y2;
-			int minZ = (z1 <= z2) ? z1 : z2;
-			int maxX = (x1 > x2) ? x1 : x2;
-			int maxY = (y1 > y2) ? y1 : y2;
-			int maxZ = (z1 > z2) ? z1 : z2;
+			createRectPrism(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
 			
-			for(int i = minX; i <= maxX; ++i)
+		case 2:	
+			createRectPrismHollow(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
+		case 3:	
+			createCylinder(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
+		case 4:	
+			createCylinderHollow(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
+		case 5:	
+			createSphere(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
+		case 6:	
+			createSphereHollow(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
+		case 7:	
+		case 8:	
+		default: break;
+		}
+	}
+	
+	public void createRectPrism(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int minX = (x1 <= x2) ? x1 : x2;
+		int minY = (y1 <= y2) ? y1 : y2;
+		int minZ = (z1 <= z2) ? z1 : z2;
+		int maxX = (x1 > x2) ? x1 : x2;
+		int maxY = (y1 > y2) ? y1 : y2;
+		int maxZ = (z1 > z2) ? z1 : z2;
+		
+		for(int i = minX; i <= maxX; ++i)
+		{
+			for(int j = minY; j <= maxY; ++j)
 			{
-				for(int j = minY; j <= maxY; ++j)
+				for(int k = minZ; k <= maxZ; ++k)
 				{
-					for(int k = minZ; k <= maxZ; ++k)
+					world.setBlock(i, j, k, block, metadata, 2);
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createRectPrismHollow(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int minX = (x1 <= x2) ? x1 : x2;
+		int minY = (y1 <= y2) ? y1 : y2;
+		int minZ = (z1 <= z2) ? z1 : z2;
+		int maxX = (x1 > x2) ? x1 : x2;
+		int maxY = (y1 > y2) ? y1 : y2;
+		int maxZ = (z1 > z2) ? z1 : z2;
+		
+		for(int i = minX; i <= maxX; ++i)
+		{
+			for(int j = minY; j <= maxY; ++j)
+			{
+				for(int k = minZ; k <= maxZ; ++k)
+				{
+					if(i == minX || i == maxX || j == minY || j == maxY || k == minZ || k == maxZ)
 					{
 						world.setBlock(i, j, k, block, metadata, 2);
 					}
 				}
 			}
-			
-			itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
-			break;
-			
-		case 2:	
-		case 3:	
-		case 4:	
-		case 5:	
-		case 6:	
-		case 7:	
-		case 8:	
-		default: break;
 		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createCylinder(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(z2 - z1, 2))));
+		int centerX = x1;
+		int centerY = (y1 <= y2) ? y1 : y2;
+		int centerZ = z1;
+		int minX = (centerX - radius);
+		int minZ = (centerZ - radius);
+		int maxX = (centerX + radius);
+		int maxZ = (centerZ + radius);
+		int maxY = (y1 > y2) ? y1 : y2;
+		
+		for(int i = minX; i <= maxX; i++)
+		{
+			for(int j = centerY; j <= maxY; j++)
+			{
+				for(int k = minZ; k <= maxZ; k++)
+				{
+					if(Math.sqrt(Math.pow(i - centerX, 2) + Math.pow(k - centerZ, 2)) <= radius)
+					{
+						world.setBlock(i, j, k, block, metadata, 2);
+					}
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createCylinderHollow(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(z2 - z1, 2))));
+		int centerX = x1;
+		int centerY = (y1 <= y2) ? y1 : y2;
+		int centerZ = z1;
+		int minX = (centerX - radius);
+		int minZ = (centerZ - radius);
+		int maxX = (centerX + radius);
+		int maxZ = (centerZ + radius);
+		int maxY = (y1 > y2) ? y1 : y2;
+		
+		for(int i = minX; i <= maxX; i++)
+		{
+			for(int j = centerY; j <= maxY; j++)
+			{
+				for(int k = minZ; k <= maxZ; k++)
+				{
+					double r = Math.sqrt(Math.pow(i - centerX, 2) + Math.pow(k - centerZ, 2));
+					//System.out.println(r);
+					if(r <= radius && r > radius - 1)
+					{
+						world.setBlock(i, j, k, block, metadata, 2);
+					}
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createSphere(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))));
+		int minX = x1 - radius;
+		int minY = y1 - radius;
+		int minZ = z1 - radius;
+		int maxX = x1 + radius;
+		int maxY = y1 + radius;
+		int maxZ = z1 + radius;
+		
+		for(int i = minX; i <= maxX; ++i)
+		{
+			for(int j = minY; j <= maxY; ++j)
+			{
+				for(int k = minZ; k <= maxZ; ++k)
+				{
+					if(Math.sqrt(Math.pow(i - x1, 2) + Math.pow(j - y1, 2) + Math.pow(k - z1, 2)) <= radius)
+					{
+						world.setBlock(i, j, k, block, metadata, 2);
+					}
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createSphereHollow(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))));
+		int minX = x1 - radius;
+		int minY = y1 - radius;
+		int minZ = z1 - radius;
+		int maxX = x1 + radius;
+		int maxY = y1 + radius;
+		int maxZ = z1 + radius;
+		
+		for(int i = minX; i <= maxX; ++i)
+		{
+			for(int j = minY; j <= maxY; ++j)
+			{
+				for(int k = minZ; k <= maxZ; ++k)
+				{
+					double r = Math.sqrt(Math.pow(i - x1, 2) + Math.pow(j - y1, 2) + Math.pow(k - z1, 2));
+					if(r <= radius && r > radius - 1)
+					{
+						world.setBlock(i, j, k, block, metadata, 2);
+					}
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
 	}
 }
