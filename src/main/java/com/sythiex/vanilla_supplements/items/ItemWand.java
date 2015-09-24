@@ -169,7 +169,13 @@ public class ItemWand extends Item
 			break;
 			
 		case 7:	
+			createHemisphere(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
 		case 8:	
+			createHemisphereHollow(itemStack, world, x1, y1, z1, x2, y2, z2);
+			break;
+			
 		default: break;
 		}
 	}
@@ -328,6 +334,65 @@ public class ItemWand extends Item
 		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))));
 		int minX = x1 - radius;
 		int minY = y1 - radius;
+		int minZ = z1 - radius;
+		int maxX = x1 + radius;
+		int maxY = y1 + radius;
+		int maxZ = z1 + radius;
+		
+		for(int i = minX; i <= maxX; ++i)
+		{
+			for(int j = minY; j <= maxY; ++j)
+			{
+				for(int k = minZ; k <= maxZ; ++k)
+				{
+					double r = Math.sqrt(Math.pow(i - x1, 2) + Math.pow(j - y1, 2) + Math.pow(k - z1, 2));
+					if(r <= radius && r > radius - 1)
+					{
+						world.setBlock(i, j, k, block, metadata, 2);
+					}
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createHemisphere(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))));
+		int minX = x1 - radius;
+		int minY = y1;
+		int minZ = z1 - radius;
+		int maxX = x1 + radius;
+		int maxY = y1 + radius;
+		int maxZ = z1 + radius;
+		
+		for(int i = minX; i <= maxX; ++i)
+		{
+			for(int j = minY; j <= maxY; ++j)
+			{
+				for(int k = minZ; k <= maxZ; ++k)
+				{
+					if(Math.sqrt(Math.pow(i - x1, 2) + Math.pow(j - y1, 2) + Math.pow(k - z1, 2)) <= radius)
+					{
+						world.setBlock(i, j, k, block, metadata, 2);
+					}
+				}
+			}
+		}
+		itemStack.stackTagCompound.setBoolean("firstBlockSet", false);
+	}
+	
+	public void createHemisphereHollow(ItemStack itemStack, World world, int x1, int y1, int z1, int x2, int y2, int z2)
+	{
+		Block block = world.getBlock(x1, y1, z1);
+		int metadata = world.getBlockMetadata(x1, y1, z1);
+		
+		int radius = (int) Math.ceil((Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))));
+		int minX = x1 - radius;
+		int minY = y1;
 		int minZ = z1 - radius;
 		int maxX = x1 + radius;
 		int maxY = y1 + radius;
