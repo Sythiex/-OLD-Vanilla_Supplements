@@ -1,0 +1,35 @@
+# Configuration file
+
+general {
+    # Lower values mean higher spawn rate [range: 2 ~ 1000, default: 30]
+    I:"Bush spawn rate"=30
+
+    # null [default: true]
+    B:"Enable 1.8 mossy cobblestone recipe"=true
+
+    # null [default: true]
+    B:"Enable berry bush generation"=true
+
+    # null [default: true]
+    B:"Enable clay convenience recipies"=true
+
+    # null [default: true]
+    B:"Enable cotton plants"=true
+
+    # Only removes the recipies, can still get through creative mode [default: true]
+    B:"Enable emerald tools/armor"=true
+
+    # null [default: true]
+    B:"Enable fertilizer from rotten flesh"=true
+
+    # null [default: true]
+    B:"Enable grass block recipe"=true
+
+    # Change to true to allow crafting string from wool (Considered overpowered with some mods) [default: false]
+    B:"Enable string recipe"=false
+
+    # null [default: true]
+    B:"Enable vine recipe"=true
+}
+
+

@@ -23,13 +23,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockBushVS extends BlockBush implements IGrowable
 {
 	public static int maxGrowthStage = 7;
+	private int renderPass = 0;
 	
 	@SideOnly(Side.CLIENT)
     protected IIcon[] iIcon;
 	
 	public BlockBushVS()
 	{
-		super(Material.plants);
+		super(Material.leaves);
 		setTickRandomly(true);
 		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
         setCreativeTab((CreativeTabs)null);
@@ -65,7 +66,7 @@ public class BlockBushVS extends BlockBush implements IGrowable
 	{
 	    super.updateTick(world, x, y, z, rand);
 	    
-	    if(world.getBlockLightValue(x, y, z) >= 9)
+	    if(world.getBlockLightValue(x, y, z) >= 9 && rand.nextInt(3) == 1)
 	    {
 	    	int growStage = world.getBlockMetadata(x, y, z) + 1;
 	    	if (growStage > maxGrowthStage)
@@ -89,6 +90,12 @@ public class BlockBushVS extends BlockBush implements IGrowable
     }
 	
 	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        return AxisAlignedBB.getBoundingBox((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (double)p_149668_3_ + this.maxY, (double)p_149668_4_ + this.maxZ);
+    }
+	
+	@Override
 	public boolean renderAsNormalBlock()
     {
         return true;
@@ -99,12 +106,6 @@ public class BlockBushVS extends BlockBush implements IGrowable
 	{
 		return 0;
 	}
-	
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
-    {
-        return AxisAlignedBB.getBoundingBox((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (double)p_149668_3_ + this.maxY, (double)p_149668_4_ + this.maxZ);
-    }
 	
 	@Override
 	public IIcon getIcon(int side, int growthStage)

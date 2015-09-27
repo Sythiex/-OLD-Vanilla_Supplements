@@ -1,35 +1,19 @@
-[02:12:30] [main/INFO]: Setting user: Player423
-[02:12:31] [Client thread/INFO]: LWJGL Version: 2.9.1
-[02:12:36] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Vanilla Supplements
-[02:12:37] [Sound Library Loader/INFO]: Sound engine started
-[02:12:38] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[02:12:38] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[02:12:39] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Vanilla Supplements
-[02:12:39] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[02:12:39] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[02:12:40] [Sound Library Loader/INFO]: Sound engine started
-[02:12:43] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[02:12:43] [Server thread/INFO]: Generating keypair
-[02:12:43] [Server thread/INFO]: Preparing start region for level 0
-[02:12:44] [Server thread/INFO]: Changing view distance to 12, from 10
-[02:12:45] [Server thread/INFO]: Player423[local:E:8352a1df] logged in with entity id 1279 at (-258.38648342624043, 88.85608742964035, -802.7603174730195)
-[02:12:45] [Server thread/INFO]: Player423 joined the game
-[02:13:00] [Server thread/INFO]: Player423 has just earned the achievement [Taking Inventory]
-[02:13:00] [Client thread/INFO]: [CHAT] Player423 has just earned the achievement [Taking Inventory]
-[02:13:07] [Client thread/INFO]: [CHAT] Mode: Cylinder, Hollow
-[02:13:08] [Client thread/INFO]: [CHAT] Mode: Sphere
-[02:13:09] [Client thread/INFO]: [CHAT] Mode: Sphere, Hollow
-[02:13:09] [Client thread/INFO]: [CHAT] Mode: Hemisphere
-[02:13:15] [Client thread/INFO]: [CHAT] Mode: Hemisphere, Hollow
-[02:13:16] [Client thread/INFO]: [CHAT] Mode: Rectangular Prism
-[02:13:21] [Server thread/INFO]: Saving and pausing game...
-[02:13:21] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[02:13:21] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[02:13:21] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[02:13:22] [Server thread/INFO]: Stopping server
-[02:13:22] [Server thread/INFO]: Saving players
-[02:13:22] [Server thread/INFO]: Saving worlds
-[02:13:22] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[02:13:22] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[02:13:22] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[02:13:23] [Client thread/INFO]: Stopping!
+[18:23:56] [main/INFO]: Setting user: Player808
+[18:23:58] [Client thread/INFO]: LWJGL Version: 2.9.1
+[18:24:02] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Vanilla Supplements
+[18:24:03] [Sound Library Loader/INFO]: Sound engine started
+[18:24:05] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[18:24:05] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[18:24:05] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Vanilla Supplements
+[18:24:06] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[18:24:06] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[18:24:06] [Sound Library Loader/INFO]: Sound engine started
+[18:24:10] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[18:24:10] [Server thread/INFO]: Generating keypair
+[18:24:10] [Server thread/INFO]: Preparing start region for level 0
+[18:24:11] [Server thread/INFO]: Preparing spawn area: 77%
+[18:24:11] [Server thread/INFO]: Changing view distance to 12, from 10
+[18:24:12] [Server thread/INFO]: Player808[local:E:e5362f5f] logged in with entity id 188 at (195.3058594176626, 63.0, -33.30000001192093)
+[18:24:12] [Server thread/INFO]: Player808 joined the game
+[18:24:23] [Server thread/INFO]: Player808 has just earned the achievement [Taking Inventory]
+[18:24:23] [Client thread/INFO]: [CHAT] Player808 has just earned the achievement [Taking Inventory]

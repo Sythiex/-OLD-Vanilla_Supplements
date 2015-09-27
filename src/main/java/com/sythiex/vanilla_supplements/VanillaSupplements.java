@@ -30,6 +30,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -50,7 +51,7 @@ public class VanillaSupplements
 	public static CommonProxyVS proxy;
 	
     public static final String MODID = "vanilla_supplements";
-    public static final String VERSION = "0.2.1";
+    public static final String VERSION = "0.3.0";
     
     public static SimpleNetworkWrapper network;
     
@@ -64,6 +65,8 @@ public class VanillaSupplements
     public static boolean addVineRecipe;
     public static boolean addStringRecipe;
     public static boolean addMossStoneRecipe;
+    public static int bushSpawnRate;
+    public static boolean enableEasterEgg;
     
     //blocks
     public static Block cottonPlant;
@@ -103,15 +106,17 @@ public class VanillaSupplements
     	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
     	config.load();
     	
-    	addEmeraldTools = config.getBoolean("Enable emerald tools/armor", config.CATEGORY_GENERAL, true, "Change to false to remove crafting recipies for emerald tools/armor");
-    	addCotton = config.getBoolean("Enable cotton plants", config.CATEGORY_GENERAL, true, "Change to false to remove cotton seed drops");
-    	addBerries = config.getBoolean("Enable berries", config.CATEGORY_GENERAL, true, "Change to false to disable berry bush generation");
-    	addFertilizer = config.getBoolean("Enable fertilizer", config.CATEGORY_GENERAL, true, "Change to false to disable crafting fertilizer from rotten flesh");
+    	addEmeraldTools = config.getBoolean("Enable emerald tools/armor", config.CATEGORY_GENERAL, true, "Only removes the recipies, can still get through creative mode");
+    	addCotton = config.getBoolean("Enable cotton plants", config.CATEGORY_GENERAL, true, "");
+    	addBerries = config.getBoolean("Enable berry bush generation", config.CATEGORY_GENERAL, true, "");
+    	addFertilizer = config.getBoolean("Enable fertilizer from rotten flesh", config.CATEGORY_GENERAL, true, "");
     	addStringRecipe = config.getBoolean("Enable string recipe", config.CATEGORY_GENERAL, false, "Change to true to allow crafting string from wool (Considered overpowered with some mods)");
-    	addGrassBlockRecipe = config.getBoolean("Enable grass block recipe", config.CATEGORY_GENERAL, true, "Change to false to remove crafting grass blocks with dirt and seeds");
-    	addClayRecipies = config.getBoolean("Enable clay recipies", config.CATEGORY_GENERAL, true, "Change to false to remove convenience recipies for clay");
-    	addVineRecipe = config.getBoolean("Enable vine recipe", config.CATEGORY_GENERAL, true, "Change to false to remove crafting vines from grass");
-    	addMossStoneRecipe = config.getBoolean("Enable 1.8 mossy cobblestone recipe", config.CATEGORY_GENERAL, true, "Change to false to remove the MC 1.8 recipe for mossy cobblestone");
+    	addGrassBlockRecipe = config.getBoolean("Enable grass block recipe", config.CATEGORY_GENERAL, true, "");
+    	addClayRecipies = config.getBoolean("Enable clay convenience recipies", config.CATEGORY_GENERAL, true, "");
+    	addVineRecipe = config.getBoolean("Enable vine recipe", config.CATEGORY_GENERAL, true, "");
+    	addMossStoneRecipe = config.getBoolean("Enable 1.8 mossy cobblestone recipe", config.CATEGORY_GENERAL, true, "");
+    	bushSpawnRate = config.getInt("Bush spawn rate", config.CATEGORY_GENERAL, 30, 2, 1000, "Lower values mean higher spawn rate");
+    	enableEasterEgg = config.getBoolean("Enable Easter Egg", config.CATEGORY_GENERAL, true, "");
     	
     	config.save();
     }
@@ -150,7 +155,7 @@ public class VanillaSupplements
     	cotton = new ItemVS().setUnlocalizedName("cotton").setTextureName(MODID + ":cotton").setCreativeTab(CreativeTabs.tabMaterials);
     	GameRegistry.registerItem(cotton, MODID + "_cotton");
     	
-    	berry = new ItemFoodVS(3, 4.0F).setUnlocalizedName("berry").setTextureName(MODID + ":berry").setCreativeTab(CreativeTabs.tabFood);
+    	berry = new ItemFoodVS(2, 3.0F).setUnlocalizedName("berry").setTextureName(MODID + ":berry").setCreativeTab(CreativeTabs.tabFood);
     	GameRegistry.registerItem(berry, MODID + "_berry");
     	
     	fertilizer = new ItemVS().setUnlocalizedName("fertilizer").setTextureName(MODID + ":fertilizer").setCreativeTab(CreativeTabs.tabMaterials);
@@ -191,11 +196,21 @@ public class VanillaSupplements
     
     private void registerOreDictionary()
     {
+    	//vanilla registries
+    	OreDictionary.registerOre("dirt", new ItemStack(Blocks.dirt));
+    	OreDictionary.registerOre("seedWheat", new ItemStack(Items.wheat_seeds));
+    	OreDictionary.registerOre("listAllSeed", new ItemStack(Items.wheat_seeds));
+    	OreDictionary.registerOre("listAllWater", new ItemStack(Items.water_bucket));
+    	OreDictionary.registerOre("blockCloth", new ItemStack(Blocks.wool));
+    	OreDictionary.registerOre("sand", new ItemStack(Blocks.sand));
+    	
+    	//mod registries
     	OreDictionary.registerOre("seedCotton", new ItemStack(seedCotton));
     	OreDictionary.registerOre("cropCotton", new ItemStack(cotton));
     	OreDictionary.registerOre("foodBerry", new ItemStack(berry));
     	OreDictionary.registerOre("cropBerry", new ItemStack(berry));
-    	OreDictionary.registerOre("materialFertilizer", new ItemStack(fertilizer));
+    	OreDictionary.registerOre("fertilizer", new ItemStack(fertilizer));
+    	OreDictionary.registerOre("fertilizerOrganic", new ItemStack(fertilizer));
     }
     
     private void registerRecipies()
@@ -203,58 +218,110 @@ public class VanillaSupplements
     	if(addEmeraldTools)
     	{
     		//tools
-    		GameRegistry.addRecipe(new ItemStack(emeraldShovel), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldShovel), new Object[]{
     			"E",
     			"S",
     			"S",
-    			'E', Items.emerald, 'S', Items.stick});
+    			'E', Items.emerald, 'S', Items.stick});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldShovel, new Object[]{
+    				"E",
+    				"S",
+    				"S",
+    				'E', "gemEmerald", 'S', "stickWood"}));
     	
-    		GameRegistry.addRecipe(new ItemStack(emeraldPickaxe), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldPickaxe), new Object[]{
     			"EEE",
     			" S ",
     			" S ",
-    			'E', Items.emerald, 'S', Items.stick});
+    			'E', Items.emerald, 'S', Items.stick});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldPickaxe, new Object[]{
+    				"EEE",
+    				" S ",
+    				" S ",
+    				'E', "gemEmerald", 'S', "stickWood"}));
     	
-    		GameRegistry.addRecipe(new ItemStack(emeraldAxe), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldAxe), new Object[]{
     			"EE",
     			"ES",
     			" S",
-    			'E', Items.emerald, 'S', Items.stick});
+    			'E', Items.emerald, 'S', Items.stick});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldAxe, new Object[]{
+    				"EE",
+    				"ES",
+    				" S",
+    				'E', "gemEmerald", 'S', "stickWood"}));
     	
-    		GameRegistry.addRecipe(new ItemStack(emeraldHoe), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldHoe), new Object[]{
     			"EE",
     			" S",
     			" S",
-    			'E', Items.emerald, 'S', Items.stick});
+    			'E', Items.emerald, 'S', Items.stick});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldHoe, new Object[]{
+    				"EE",
+    				" S",
+    				" S",
+    				'E', "gemEmerald", 'S', "stickWood"}));
     	
-    		GameRegistry.addRecipe(new ItemStack(emeraldSword), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldSword), new Object[]{
     			"E",
     			"E",
     			"S",
-    			'E', Items.emerald, 'S', Items.stick});
+    			'E', Items.emerald, 'S', Items.stick});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldSword, new Object[]{
+    				"E",
+    				"E",
+    				"S",
+    				'E', "gemEmerald", 'S', "stickWood"}));
     		
     		//armor
-    		GameRegistry.addRecipe(new ItemStack(emeraldHelmet), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldHelmet), new Object[]{
     			"EEE",
     			"E E",
-    			'E', Items.emerald});
+    			'E', Items.emerald});*/
     		
-    		GameRegistry.addRecipe(new ItemStack(emeraldChestplate), new Object[]{
-    			"E E",
-    			"EEE",
-    			"EEE",
-    			'E', Items.emerald});
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldHelmet, new Object[]{
+    				"EEE",
+    				"E E",
+    				'E', "gemEmerald"}));
     		
-    		GameRegistry.addRecipe(new ItemStack(emeraldLeggings), new Object[]{
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldChestplate), new Object[]{
+    			"E E",
+    			"EEE",
+    			"EEE",
+    			'E', Items.emerald});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldChestplate, new Object[]{
+    				"E E",
+    				"EEE",
+    				"EEE",
+    				'E', "gemEmerald"}));
+    		
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldLeggings), new Object[]{
     			"EEE",
     			"E E",
     			"E E",
-    			'E', Items.emerald});
+    			'E', Items.emerald});*/
     		
-    		GameRegistry.addRecipe(new ItemStack(emeraldBoots), new Object[]{
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldLeggings, new Object[]{
+    				"EEE",
+    				"E E",
+    				"E E",
+    				'E', "gemEmerald"}));
+    		
+    		/*GameRegistry.addRecipe(new ItemStack(emeraldBoots), new Object[]{
     			"E E",
     			"E E",
-    			'E', Items.emerald});
+    			'E', Items.emerald});*/
+    		
+    		GameRegistry.addRecipe(new ShapedOreRecipe(emeraldBoots, new Object[]{
+    				"E E",
+    				"E E",
+    				'E', "gemEmerald"}));
     	}
     	
     	GameRegistry.addRecipe(new ShapedOreRecipe(Items.string, new Object[]{
@@ -263,18 +330,21 @@ public class VanillaSupplements
     	
     	if(addFertilizer)
     	{
-    		GameRegistry.addShapelessRecipe(new ItemStack(fertilizer, 8), new ItemStack(Items.rotten_flesh));
+    		GameRegistry.addShapelessRecipe(new ItemStack(fertilizer), new ItemStack(Items.rotten_flesh));
     	}
     	
     	if(addGrassBlockRecipe)
     	{
-    		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.grass), new ItemStack(Blocks.dirt), new ItemStack(Items.wheat_seeds));
+    		//GameRegistry.addShapelessRecipe(new ItemStack(Blocks.grass), new ItemStack(Blocks.dirt), new ItemStack(Items.wheat_seeds));
+    		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Blocks.grass), new Object[]{"dirt", "listAllSeed"}));
     	}
     	
     	if(addClayRecipies)
     	{
     		GameRegistry.addShapelessRecipe(new ItemStack(Items.clay_ball, 4), new ItemStack(Blocks.clay));
-    		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.clay), new ItemStack(Blocks.dirt), new ItemStack(Blocks.dirt), new ItemStack(Blocks.sand), new ItemStack(Items.water_bucket));
+    		//GameRegistry.addShapelessRecipe(new ItemStack(Blocks.clay), new ItemStack(Blocks.dirt), new ItemStack(Blocks.dirt), new ItemStack(Blocks.sand), new ItemStack(Items.water_bucket));
+    		
+    		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Blocks.clay), new Object[]{"dirt", "dirt", "sand", "listAllWater"}));
     	}
     	
     	if(addVineRecipe)
@@ -287,12 +357,14 @@ public class VanillaSupplements
     	
     	if(addStringRecipe)
     	{
-    		GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 4), new ItemStack(Blocks.wool));
+    		//GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 4), new ItemStack(Blocks.wool));
+    		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.string, 4), new Object[]{"blockCloth"}));
     	}
     	
     	if(addMossStoneRecipe)
     	{
-    		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.vine));
+    		//GameRegistry.addShapelessRecipe(new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.vine));
+    		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Blocks.mossy_cobblestone), new Object[]{"cobblestone", new ItemStack(Blocks.vine)}));
     	}
     }
 }

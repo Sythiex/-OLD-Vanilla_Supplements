@@ -15,17 +15,14 @@
 <fullyQualifiedTypeName name="net.minecraft.item.ItemFood"/>
 <fullyQualifiedTypeName name="cpw.mods.fml.common.IWorldGenerator"/>
 <fullyQualifiedTypeName name="net.minecraftforge.common.util.ForgeDirection"/>
-<fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
 <fullyQualifiedTypeName name="net.minecraft.block.material.Material"/>
 <fullyQualifiedTypeName name="net.minecraft.server.MinecraftServer"/>
 <fullyQualifiedTypeName name="net.minecraft.item.ItemDye"/>
-<fullyQualifiedTypeName name="net.minecraft.init.Items"/>
 <fullyQualifiedTypeName name="net.minecraft.item.Item"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="cpw.mods.fml.common.registry.GameRegistry"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.item.EntityItem"/>
-<fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
 <fullyQualifiedTypeName name="net.minecraft.nbt.NBTTagCompound"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="java.util.List"/>
@@ -55,4 +52,8 @@
 <fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.network.MessageHandlerVS"/>
 <fullyQualifiedTypeName name="cpw.mods.fml.relauncher.Side"/>
 <fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.network.MessageVS"/>
+<fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
+<fullyQualifiedTypeName name="net.minecraftforge.oredict.ShapelessOreRecipe"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Items"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
 </qualifiedTypeNameHistroy>

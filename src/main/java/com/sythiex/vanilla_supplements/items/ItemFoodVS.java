@@ -22,7 +22,7 @@ public class ItemFoodVS extends ItemFood
     {
         if (player.canEat(false))
         {
-        	if(!world.isRemote && !messagePlayed && player.getDisplayName() == "Zodiac17")
+        	if(!messagePlayed && player.getDisplayName() == "Zodiac17")
         	{
         		MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText("Zodiac17: 'OOOOOOHHHHHHHH, THIS BERRY IS SOOO DELICIOUS!!! THE FEELING OF IT SQUIRTING ITS JUICES INTO MY MOUTH IS EXQUISITE!!! AND TO THINK I HAVE BEEN MISSING OUT ON THIS EXPERIENCE ALL THESE YEARS BECAUSE I REFUSED TO PLAY WITH NATURA!!! OH, HOW I HAVE WRONGED YOU, BUSHES OF DANGLING JUICE-FILLED BALLS!!!'"));
         		messagePlayed = true;

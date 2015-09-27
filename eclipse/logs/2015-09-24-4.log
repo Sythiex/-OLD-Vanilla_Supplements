@@ -1,0 +1,29 @@
+[17:11:21] [main/INFO]: Setting user: Player930
+[17:11:22] [Client thread/INFO]: LWJGL Version: 2.9.1
+[17:11:27] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Vanilla Supplements
+[17:11:28] [Sound Library Loader/INFO]: Sound engine started
+[17:11:29] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[17:11:29] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[17:11:30] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Vanilla Supplements
+[17:11:30] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[17:11:30] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[17:11:31] [Sound Library Loader/INFO]: Sound engine started
+[17:11:42] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[17:11:42] [Server thread/INFO]: Generating keypair
+[17:11:43] [Server thread/INFO]: Preparing start region for level 0
+[17:11:44] [Server thread/INFO]: Preparing spawn area: 74%
+[17:11:44] [Server thread/INFO]: Changing view distance to 12, from 10
+[17:11:44] [Server thread/INFO]: Player930[local:E:34f73b7c] logged in with entity id 101 at (-40.94719164644167, 75.90272498571426, -643.0685772468769)
+[17:11:44] [Server thread/INFO]: Player930 joined the game
+[17:12:13] [Server thread/INFO]: Saving and pausing game...
+[17:12:13] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:12:13] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:12:13] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:12:13] [Server thread/INFO]: Stopping server
+[17:12:13] [Server thread/INFO]: Saving players
+[17:12:13] [Server thread/INFO]: Saving worlds
+[17:12:13] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:12:13] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:12:13] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:14:14] [Client thread/INFO]: Stopping!
+[17:14:22] [main/INFO]: Setting user: Player165
