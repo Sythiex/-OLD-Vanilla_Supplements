@@ -51,7 +51,7 @@ public class VanillaSupplements
 	public static CommonProxyVS proxy;
 	
     public static final String MODID = "vanilla_supplements";
-    public static final String VERSION = "0.3.0";
+    public static final String VERSION = "0.3.1";
     
     public static SimpleNetworkWrapper network;
     
@@ -155,7 +155,7 @@ public class VanillaSupplements
     	cotton = new ItemVS().setUnlocalizedName("cotton").setTextureName(MODID + ":cotton").setCreativeTab(CreativeTabs.tabMaterials);
     	GameRegistry.registerItem(cotton, MODID + "_cotton");
     	
-    	berry = new ItemFoodVS(2, 3.0F).setUnlocalizedName("berry").setTextureName(MODID + ":berry").setCreativeTab(CreativeTabs.tabFood);
+    	berry = new ItemFoodVS(2, 1.6F).setUnlocalizedName("berry").setTextureName(MODID + ":berry").setCreativeTab(CreativeTabs.tabFood);
     	GameRegistry.registerItem(berry, MODID + "_berry");
     	
     	fertilizer = new ItemVS().setUnlocalizedName("fertilizer").setTextureName(MODID + ":fertilizer").setCreativeTab(CreativeTabs.tabMaterials);
@@ -324,7 +324,7 @@ public class VanillaSupplements
     				'E', "gemEmerald"}));
     	}
     	
-    	GameRegistry.addRecipe(new ShapedOreRecipe(Items.string, new Object[]{
+    	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.string, 3), new Object[]{
 			"CCC",
 			'C', "cropCotton"}));
     	

@@ -1,8 +1,0 @@
-package com.sythiex.vanilla_supplements.client;
-
-import com.sythiex.vanilla_supplements.VSCommonProxy;
-
-public class VSClientProxy extends VSCommonProxy
-{
-
-}
