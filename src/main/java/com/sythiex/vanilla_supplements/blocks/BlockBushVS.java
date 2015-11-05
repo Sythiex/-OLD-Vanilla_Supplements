@@ -33,7 +33,7 @@ public class BlockBushVS extends BlockBush implements IGrowable
 		super(Material.leaves);
 		setTickRandomly(true);
 		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-        setCreativeTab((CreativeTabs)null);
+        setCreativeTab(CreativeTabs.tabDecorations);
         setHardness(0.6F);
         setLightOpacity(1);
         setStepSound(soundTypeGrass);
@@ -54,7 +54,8 @@ public class BlockBushVS extends BlockBush implements IGrowable
 	public boolean canBlockStay(World world, int x, int y, int z)
 	{
 		Block block = world.getBlock(x, y - 1, z);
-		if(block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland || block == this)
+		
+		if(block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this) || block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland || block == this)
 		{
 			return true;
 		}
