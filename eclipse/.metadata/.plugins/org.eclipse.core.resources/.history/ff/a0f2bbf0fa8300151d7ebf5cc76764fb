@@ -39,7 +39,7 @@ public class WorldGenVS implements IWorldGenerator
 		int z = chunkZ * 16 + rand.nextInt(16);
 		int y = getTopSolidBlock(world, x, z);
 		
-		if((world.getBlock(x, y, z) == Blocks.grass || world.getBlock(x, y, z) == Blocks.dirt) && rand.nextInt(VanillaSupplements.bushSpawnRate) == 0)
+		if((world.getBlock(x, y, z) == Blocks.grass || world.getBlock(x, y, z) == Blocks.dirt) && rand.nextInt(30) == 0)
 		{
 			boolean flag = false;
 			++y;

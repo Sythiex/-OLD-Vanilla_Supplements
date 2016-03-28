@@ -115,7 +115,7 @@ public class VanillaSupplements
     	addClayRecipies = config.getBoolean("Enable clay convenience recipies", config.CATEGORY_GENERAL, true, "");
     	addVineRecipe = config.getBoolean("Enable vine recipe", config.CATEGORY_GENERAL, true, "");
     	addMossStoneRecipe = config.getBoolean("Enable 1.8 mossy cobblestone recipe", config.CATEGORY_GENERAL, true, "");
-    	bushSpawnRate = config.getInt("Bush spawn rate", config.CATEGORY_GENERAL, 15, 2, 1000, "Lower values mean higher spawn rate");
+    	bushSpawnRate = config.getInt("Bush spawn rate", config.CATEGORY_GENERAL, 30, 2, 1000, "Lower values mean higher spawn rate");
     	enableEasterEgg = config.getBoolean("Enable Easter Egg", config.CATEGORY_GENERAL, true, "");
     	
     	config.save();
