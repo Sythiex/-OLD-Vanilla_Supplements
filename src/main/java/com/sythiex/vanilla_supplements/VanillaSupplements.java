@@ -44,7 +44,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = VanillaSupplements.MODID, version = VanillaSupplements.VERSION)
-
 public class VanillaSupplements
 {
 	@SidedProxy(clientSide="com.sythiex.vanilla_supplements.network.ClientProxyVS", serverSide="com.sythiex.vanilla_supplements.network.ServerProxyVS")
