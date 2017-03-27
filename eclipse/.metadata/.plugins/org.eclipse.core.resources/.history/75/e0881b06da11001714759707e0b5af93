@@ -1,0 +1,8 @@
+package com.sythiex.vanillasupplements.items;
+
+import net.minecraft.item.Item;
+
+public class BatKillerRing extends Item
+{
+	
+}

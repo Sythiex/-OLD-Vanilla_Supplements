@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="net.minecraft.item.ItemSeeds"/>
-<fullyQualifiedTypeName name="net.minecraft.client.renderer.texture.IIconRegister"/>
-<fullyQualifiedTypeName name="net.minecraft.util.IIcon"/>
-<fullyQualifiedTypeName name="net.minecraft.util.MathHelper"/>
-<fullyQualifiedTypeName name="net.minecraftforge.oredict.OreDictionary"/>
 <fullyQualifiedTypeName name="net.minecraftforge.oredict.ShapedOreRecipe"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="net.minecraftforge.common.MinecraftForge"/>
@@ -18,14 +13,10 @@
 <fullyQualifiedTypeName name="net.minecraft.block.material.Material"/>
 <fullyQualifiedTypeName name="net.minecraft.server.MinecraftServer"/>
 <fullyQualifiedTypeName name="net.minecraft.item.ItemDye"/>
-<fullyQualifiedTypeName name="net.minecraft.item.Item"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="cpw.mods.fml.common.registry.GameRegistry"/>
-<fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.item.EntityItem"/>
 <fullyQualifiedTypeName name="net.minecraft.nbt.NBTTagCompound"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="net.minecraft.util.IChatComponent"/>
 <fullyQualifiedTypeName name="net.minecraft.util.ChatComponentText"/>
 <fullyQualifiedTypeName name="net.minecraft.block.Block"/>
@@ -45,15 +36,28 @@
 <fullyQualifiedTypeName name="cpw.mods.fml.common.network.simpleimpl.IMessage"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.player.EntityPlayerMP"/>
 <fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.VanillaSupplements"/>
-<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
 <fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.items.ItemWand"/>
 <fullyQualifiedTypeName name="cpw.mods.fml.common.network.NetworkRegistry"/>
 <fullyQualifiedTypeName name="cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper"/>
 <fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.network.MessageHandlerVS"/>
 <fullyQualifiedTypeName name="cpw.mods.fml.relauncher.Side"/>
 <fullyQualifiedTypeName name="com.sythiex.vanilla_supplements.network.MessageVS"/>
-<fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
 <fullyQualifiedTypeName name="net.minecraftforge.oredict.ShapelessOreRecipe"/>
 <fullyQualifiedTypeName name="net.minecraft.init.Items"/>
 <fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
+<fullyQualifiedTypeName name="net.minecraft.item.Item"/>
+<fullyQualifiedTypeName name="baubles.api.IBauble"/>
+<fullyQualifiedTypeName name="net.minecraft.world.World"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+<fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
+<fullyQualifiedTypeName name="com.sythiex.vanillasupplements.VanillaSupplements"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.passive.EntityBat"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="net.minecraft.util.AxisAlignedBB"/>
+<fullyQualifiedTypeName name="com.sythiex.vanillasupplements.items.ItemBatKillerRing"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.registry.GameRegistry"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.Optional"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.Optional.Method"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.Optional.Interface"/>
 </qualifiedTypeNameHistroy>

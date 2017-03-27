@@ -1,9 +1,9 @@
 [
 {
-  "modid": "vanilla_supplements",
+  "modid": "vanillasupplements",
   "name": "Vanilla Supplements",
   "description": "Adds emerald tools and armor, additional recipes for vanilla items, and alternative ways of acquiring several resources.",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "mcversion": "1.7.10",
   "url": "",
   "updateUrl": "",
@@ -11,6 +11,6 @@
   "credits": "",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["Baubles"]
 }
 ]

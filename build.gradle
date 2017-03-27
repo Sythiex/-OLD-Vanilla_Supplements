@@ -17,16 +17,17 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-0.3.2"
+version = "1.7.10-0.4.0"
 group= "com.sythiex.vanilla_supplements" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "VanillaSupplements"
 
 minecraft {
-    version = "1.7.10-10.13.4.1448-1.7.10"
+    version = "1.7.10-10.13.4.1558-1.7.10"
     runDir = "eclipse"
 }
 
 dependencies {
+    // compile 'lib/Baubles-deobf-1.7.10-1.0.1.10.jar'
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
